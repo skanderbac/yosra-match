@@ -52,6 +52,7 @@ return [
     'ListByMatche' => [['id'], ['_controller' => 'App\\Controller\\MatcheController::ListBilletByMatche'], [], [['variable', '/', '[^/]++', 'id'], ['text', '/ListByMatche']], [], []],
     'AffMatchAjax' => [[], ['_controller' => 'App\\Controller\\MatcheController::AffAjaxMatch'], [], [['text', '/AffMatcheAjax']], [], []],
     'rechMatch' => [[], ['_controller' => 'App\\Controller\\MatcheController::RechercheAjaxMatch'], [], [['text', '/RechercheMatche']], [], []],
+    'rechMatchDate' => [[], ['_controller' => 'App\\Controller\\MatcheController::RechercheAjaxMatchDate'], [], [['text', '/RechercheMatcheDate']], [], []],
     'stade' => [[], ['_controller' => 'App\\Controller\\StadeController::index'], [], [['text', '/stade']], [], []],
     'AfficheStade' => [[], ['_controller' => 'App\\Controller\\StadeController::Affiche'], [], [['text', '/AfficheStade']], [], []],
     'AddStade' => [[], ['_controller' => 'App\\Controller\\StadeController::Add'], [], [['text', '/stade/AddStade']], [], []],

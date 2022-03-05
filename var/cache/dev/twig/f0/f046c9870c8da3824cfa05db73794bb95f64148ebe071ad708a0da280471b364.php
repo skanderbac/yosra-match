@@ -183,13 +183,8 @@ class __TwigTemplate_6d41430d171161a4812741ce3328bf9f5277d52a41960546eb0ca261962
                             </div>
                             <div class=\"form-group\">
                                 <label class=\"headline01\">Date</label>
-                                <select class=\"form-control\">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                                <input type=\"date\" id=\"datem\" class=\"form-control\">
+
                             </div>
 
                         </form>
@@ -224,7 +219,7 @@ class __TwigTemplate_6d41430d171161a4812741ce3328bf9f5277d52a41960546eb0ca261962
                 searchRequest = \$.ajax({
                     type: \"POST\",
                     url: \"";
-        // line 119
+        // line 114
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("rechMatch");
         echo "\",
                     data: {
@@ -239,11 +234,11 @@ class __TwigTemplate_6d41430d171161a4812741ce3328bf9f5277d52a41960546eb0ca261962
                                 if (key === 'entities') {
                                     if (id !== 'error') {
                                         var img1=";
-        // line 131
+        // line 126
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("upload/"), "html", null, true);
         echo "+value[7];
                                         var img2=";
-        // line 132
+        // line 127
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("upload/"), "html", null, true);
         echo "+value[8];
                                         entitySelector.append(
@@ -276,6 +271,69 @@ class __TwigTemplate_6d41430d171161a4812741ce3328bf9f5277d52a41960546eb0ca261962
     <script type=\"text/javascript\">
         jQuery(document).ready(function() {
             var searchRequest = null;
+            \$(\"#datem\").change(function() {
+                console.log(\$(this).val())
+                var minlength = 0;
+                var that = this;
+                var value = \$(this).val();
+                var entitySelector = \$(\"#result\").html('');
+                if (searchRequest != null)
+                    searchRequest.abort();
+                searchRequest = \$.ajax({
+                    type: \"POST\",
+                    url: \"";
+        // line 168
+        echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("rechMatchDate");
+        echo "\",
+                    data: {
+                        'q' : value
+                    },
+                    dataType: \"text\",
+                    success: function(msg){
+                        console.log(msg);
+                        var result = JSON.parse(msg);
+                        \$.each(result, function(key, arr) {
+                            \$.each(arr, function(id, value) {
+                                if (key === 'entities') {
+                                    if (id !== 'error') {
+                                        var img1=";
+        // line 180
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("upload/"), "html", null, true);
+        echo "+value[7];
+                                        var img2=";
+        // line 181
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("upload/"), "html", null, true);
+        echo "+value[8];
+                                        entitySelector.append(
+                                            '<div class=\"matchSchedule_details row\"> <div class=\"match_next right-triangle\"> <div class=\"wrap_match_next right-triangle\"><div class=right-padding><h4 class=headline03>'+value[0]+ '</h4>'+
+                                            '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></div>'+
+                                            '</div></div>'+
+                                            '<div class=match_versus><div class=\"bg-blackimg match_versus02\"><div class=nextmatchDetails><div class=\"wrap-logo clearfix\">'+
+                                            '<div class=logo-match><img src=\"'+img1+'\" alt=image></div>'+
+                                            '<div class=match_vs>vs</div>'+
+                                            '<div class=logo-match><img src=\"'+img2+'\" alt=image></div>'+
+                                            '</div>'+
+                                            '<p class=match_dtls><b> Date :</b>'+value[1]+'/'+value[2]+'/'+value[3]+'</p>'+
+                                            '<p class=match_dtls><b> Time :</b>'+value[4]+ 'PM</p>'+
+                                            '<p class=match_dtls><b> Nom Arbitre Principal :</b>'+value[5]+'</p>'+
+                                            '<p class=match_dtls><b> Stade :</b>'+value[6]+'<br> <li><a href=\"ListByMatche/'+id+'\" class=\"btn-small01 btn-green\">Billet</a></li></p></div>'+
+                                            '</div></div></div>'
+                                        );
+                                    } else {
+                                        entitySelector.append('<div class=\"error\">'+value+'</div>');
+                                    }
+                                }
+                            });
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script type=\"text/javascript\">
+        jQuery(document).ready(function() {
+            var searchRequest = null;
 
                 var entitySelector = \$(\"#result\").html('');
                 if (searchRequest != null)
@@ -283,7 +341,7 @@ class __TwigTemplate_6d41430d171161a4812741ce3328bf9f5277d52a41960546eb0ca261962
                 searchRequest = \$.ajax({
                     type: \"POST\",
                     url: \"";
-        // line 169
+        // line 218
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("AffMatchAjax");
         echo "\",
                     data: {
@@ -298,11 +356,11 @@ class __TwigTemplate_6d41430d171161a4812741ce3328bf9f5277d52a41960546eb0ca261962
                                 if (key === 'entities') {
                                     if (id !== 'error') {
                                         var img1=";
-        // line 181
+        // line 230
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("upload/"), "html", null, true);
         echo "+value[7];
                                         var img2=";
-        // line 182
+        // line 231
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("upload/"), "html", null, true);
         echo "+value[8];
                                         entitySelector.append(
@@ -353,7 +411,7 @@ class __TwigTemplate_6d41430d171161a4812741ce3328bf9f5277d52a41960546eb0ca261962
 
     public function getDebugInfo()
     {
-        return array (  306 => 182,  302 => 181,  287 => 169,  247 => 132,  243 => 131,  228 => 119,  182 => 75,  171 => 73,  167 => 72,  151 => 58,  134 => 47,  128 => 44,  119 => 38,  110 => 32,  103 => 28,  82 => 10,  79 => 9,  75 => 8,  68 => 3,  58 => 2,  35 => 1,);
+        return array (  364 => 231,  360 => 230,  345 => 218,  305 => 181,  301 => 180,  286 => 168,  242 => 127,  238 => 126,  223 => 114,  182 => 75,  171 => 73,  167 => 72,  151 => 58,  134 => 47,  128 => 44,  119 => 38,  110 => 32,  103 => 28,  82 => 10,  79 => 9,  75 => 8,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -436,13 +494,8 @@ class __TwigTemplate_6d41430d171161a4812741ce3328bf9f5277d52a41960546eb0ca261962
                             </div>
                             <div class=\"form-group\">
                                 <label class=\"headline01\">Date</label>
-                                <select class=\"form-control\">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
+                                <input type=\"date\" id=\"datem\" class=\"form-control\">
+
                             </div>
 
                         </form>
@@ -504,6 +557,60 @@ class __TwigTemplate_6d41430d171161a4812741ce3328bf9f5277d52a41960546eb0ca261962
                                         '<p class=match_dtls><b> Nom Arbitre Principal :</b>'+value[5]+'</p>'+
                                         '<p class=match_dtls><b> Stade :</b>'+value[6]+'<br> <li><a href=\"ListByMatche/'+id+'\" class=\"btn-small01 btn-green\">Billet</a></li></p></div>'+
                                         '</div></div></div>'
+                                        );
+                                    } else {
+                                        entitySelector.append('<div class=\"error\">'+value+'</div>');
+                                    }
+                                }
+                            });
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+    <script type=\"text/javascript\">
+        jQuery(document).ready(function() {
+            var searchRequest = null;
+            \$(\"#datem\").change(function() {
+                console.log(\$(this).val())
+                var minlength = 0;
+                var that = this;
+                var value = \$(this).val();
+                var entitySelector = \$(\"#result\").html('');
+                if (searchRequest != null)
+                    searchRequest.abort();
+                searchRequest = \$.ajax({
+                    type: \"POST\",
+                    url: \"{{ path('rechMatchDate') }}\",
+                    data: {
+                        'q' : value
+                    },
+                    dataType: \"text\",
+                    success: function(msg){
+                        console.log(msg);
+                        var result = JSON.parse(msg);
+                        \$.each(result, function(key, arr) {
+                            \$.each(arr, function(id, value) {
+                                if (key === 'entities') {
+                                    if (id !== 'error') {
+                                        var img1={{ asset('upload/') }}+value[7];
+                                        var img2={{ asset('upload/')  }}+value[8];
+                                        entitySelector.append(
+                                            '<div class=\"matchSchedule_details row\"> <div class=\"match_next right-triangle\"> <div class=\"wrap_match_next right-triangle\"><div class=right-padding><h4 class=headline03>'+value[0]+ '</h4>'+
+                                            '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></div>'+
+                                            '</div></div>'+
+                                            '<div class=match_versus><div class=\"bg-blackimg match_versus02\"><div class=nextmatchDetails><div class=\"wrap-logo clearfix\">'+
+                                            '<div class=logo-match><img src=\"'+img1+'\" alt=image></div>'+
+                                            '<div class=match_vs>vs</div>'+
+                                            '<div class=logo-match><img src=\"'+img2+'\" alt=image></div>'+
+                                            '</div>'+
+                                            '<p class=match_dtls><b> Date :</b>'+value[1]+'/'+value[2]+'/'+value[3]+'</p>'+
+                                            '<p class=match_dtls><b> Time :</b>'+value[4]+ 'PM</p>'+
+                                            '<p class=match_dtls><b> Nom Arbitre Principal :</b>'+value[5]+'</p>'+
+                                            '<p class=match_dtls><b> Stade :</b>'+value[6]+'<br> <li><a href=\"ListByMatche/'+id+'\" class=\"btn-small01 btn-green\">Billet</a></li></p></div>'+
+                                            '</div></div></div>'
                                         );
                                     } else {
                                         entitySelector.append('<div class=\"error\">'+value+'</div>');

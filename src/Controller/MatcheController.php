@@ -245,6 +245,26 @@ function Update(MatcheRepository  $repository,$id,Request $request){
         return new Response(json_encode($result));
     }
 
+    /**
+     * @Route("/RechercheMatcheDate", name="rechMatchDate", methods={"POST"})
+     */
+    public function RechercheAjaxMatchDate(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $requestString = $request->get('q');
+
+        $entities =  $em->getRepository(Matche::class)->RechercheDate($requestString);
+
+        if(!$entities) {
+            $result['entities']['error'] = "Aucun matche trouvée";
+        } else {
+            $result['entities'] = $this->getRealEntities($entities);
+        }
+
+        return new Response(json_encode($result));
+    }
+
     public function getRealEntities($matches){
 
         foreach ($matches as $m){

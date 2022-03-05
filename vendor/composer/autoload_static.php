@@ -59,6 +59,7 @@ class ComposerStaticInit03a3c7ef9123092a2f8c3df791837cc6
             'Symfony\\Component\\VarDumper\\' => 28,
             'Symfony\\Component\\Validator\\' => 28,
             'Symfony\\Component\\Translation\\' => 30,
+            'Symfony\\Component\\Templating\\' => 29,
             'Symfony\\Component\\Stopwatch\\' => 28,
             'Symfony\\Component\\Serializer\\' => 29,
             'Symfony\\Component\\Security\\Http\\' => 32,
@@ -264,6 +265,10 @@ class ComposerStaticInit03a3c7ef9123092a2f8c3df791837cc6
         'Symfony\\Component\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
+        ),
+        'Symfony\\Component\\Templating\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/templating',
         ),
         'Symfony\\Component\\Stopwatch\\' => 
         array (
@@ -607,6 +612,13 @@ class ComposerStaticInit03a3c7ef9123092a2f8c3df791837cc6
             'blackknight467\\StarRatingBundle' => 
             array (
                 0 => __DIR__ . '/..' . '/blackknight467/star-rating-bundle',
+            ),
+        ),
+        'T' => 
+        array (
+            'Twig_' => 
+            array (
+                0 => __DIR__ . '/..' . '/twig/twig/lib',
             ),
         ),
     );

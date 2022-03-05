@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Avis;
 use App\Entity\Matche;
 use App\Entity\Reclamation;
+use App\Form\AvisType;
 use App\Form\MatcheType;
 use App\Repository\BilletRepository;
 use App\Repository\MatcheRepository;
@@ -45,10 +47,23 @@ public function Affiche(MatcheRepository $repository){
      * @return Response
      * @route("/AfficheUnM", name="AfficheUnMatche")
      */
-    public function Afficheunmatche(MatcheRepository $repository){
+    public function Afficheunmatche(MatcheRepository $repository,Request $request){
+        $avis = new Avis();
+        $form=$this->createForm(AvisType::class,$avis);
         $matche=$repository->findAll();
+        $form->handleRequest($request);
+        if($form->isSubmitted()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($avis);
+            $em->flush();
+            $this->addFlash(
+                'info',
+                'Merci pour votre avis'
+            );
+            return $this->redirectToRoute('AfficheUnMatche');
+        }
         return $this->render('matche/AfficherUnMatch.html.twig',
-            ['matche'=>$matche]);
+            ['matche'=>$matche,'form'=>$form->createView()]);
     }
     /**
      * @param MatcheRepository $repository

@@ -21,6 +21,7 @@
       <parameter key="SecurityBundle">Symfony\Bundle\SecurityBundle\SecurityBundle</parameter>
       <parameter key="TwigExtraBundle">Twig\Extra\TwigExtraBundle\TwigExtraBundle</parameter>
       <parameter key="WebServerBundle">Symfony\Bundle\WebServerBundle\WebServerBundle</parameter>
+      <parameter key="StarRatingBundle">blackknight467\StarRatingBundle\StarRatingBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -71,6 +72,10 @@
         <parameter key="path">C:\Users\skand\Documents\yosra-match\vendor\symfony\web-server-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\WebServerBundle</parameter>
       </parameter>
+      <parameter key="StarRatingBundle" type="collection">
+        <parameter key="path">C:\Users\skand\Documents\yosra-match\vendor\blackknight467\star-rating-bundle\blackknight467\StarRatingBundle</parameter>
+        <parameter key="namespace">blackknight467\StarRatingBundle</parameter>
+      </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">srcApp_KernelDevDebugContainer</parameter>
@@ -105,7 +110,7 @@
       <parameter key="Symfony\Component\Security\Http\Event\InteractiveLoginEvent">security.interactive_login</parameter>
       <parameter key="Symfony\Component\Security\Http\Event\SwitchUserEvent">security.switch_user</parameter>
     </parameter>
-    <parameter key="fragment.renderer.hinclude.global_template"></parameter>
+    <parameter key="fragment.renderer.hinclude.global_template">null</parameter>
     <parameter key="fragment.path">/_fragment</parameter>
     <parameter key="kernel.secret">%env(APP_SECRET)%</parameter>
     <parameter key="kernel.http_method_override">true</parameter>
@@ -128,6 +133,10 @@
     <parameter key="form.type_extension.csrf.field_name">_token</parameter>
     <parameter key="asset.request_context.base_path"></parameter>
     <parameter key="asset.request_context.secure">false</parameter>
+    <parameter key="templating.loader.cache.path">null</parameter>
+    <parameter key="templating.engines" type="collection">
+      <parameter>twig</parameter>
+    </parameter>
     <parameter key="validator.mapping.cache.file">C:\Users\skand\Documents\yosra-match\var\cache\dev/validation.php</parameter>
     <parameter key="validator.translation_domain">validators</parameter>
     <parameter key="translator.logging">false</parameter>
@@ -147,6 +156,7 @@
     <parameter key="serializer.mapping.cache.file">C:\Users\skand\Documents\yosra-match\var\cache\dev/serialization.php</parameter>
     <parameter key="twig.exception_listener.controller">null</parameter>
     <parameter key="twig.form.resources" type="collection">
+      <parameter>StarRatingBundle::rating.html.twig</parameter>
       <parameter>form_div_layout.html.twig</parameter>
       <parameter>bootstrap_4_layout.html.twig</parameter>
     </parameter>
@@ -250,6 +260,7 @@
     <parameter key="security.authentication.session_strategy.strategy">migrate</parameter>
     <parameter key="security.access.always_authenticate_before_granting">false</parameter>
     <parameter key="security.authentication.hide_user_not_found">true</parameter>
+    <parameter key="star_rating.config" type="collection"/>
     <parameter key="maker.compatible_check.doctrine.supports_attributes">true</parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
@@ -410,6 +421,9 @@
         <argument type="service" id=".service_locator.vdmMuyE.App\Controller\StadeController"/>
       </call>
     </service>
+    <service id="App\Form\AvisType" class="App\Form\AvisType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\BilletType" class="App\Form\BilletType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -433,6 +447,10 @@
       <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\ArtisteRepository" class="App\Repository\ArtisteRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
+    </service>
+    <service id="App\Repository\AvisRepository" class="App\Repository\AvisRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
       <argument type="service" id="doctrine"/>
     </service>
@@ -852,6 +870,7 @@
         <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\security-core/Resources/translations</argument>
       </argument>
       <argument type="collection">
+        <argument>C:\Users\skand\Documents\yosra-match/vendor/blackknight467/star-rating-bundle/blackknight467/StarRatingBundle/Resources/views</argument>
         <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\twig-bridge/Resources/views/Email</argument>
         <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\twig-bridge/Resources/views/Form</argument>
       </argument>
@@ -873,6 +892,7 @@
         <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\security-core/Resources/translations</argument>
       </argument>
       <argument type="collection">
+        <argument>C:\Users\skand\Documents\yosra-match/vendor/blackknight467/star-rating-bundle/blackknight467/StarRatingBundle/Resources/views</argument>
         <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\twig-bridge/Resources/views/Email</argument>
         <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\twig-bridge/Resources/views/Form</argument>
       </argument>
@@ -899,8 +919,10 @@
         <argument>Symfony\Component\Form\Extension\Core\Type</argument>
         <argument>App\Form</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type</argument>
+        <argument>blackknight467\StarRatingBundle\Form</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\AvisType</argument>
         <argument>App\Form\BilletType</argument>
         <argument>App\Form\EquipeType</argument>
         <argument>App\Form\EvenementType</argument>
@@ -911,6 +933,7 @@
         <argument>Symfony\Component\Form\Extension\Core\Type\ChoiceType</argument>
         <argument>Symfony\Component\Form\Extension\Core\Type\FileType</argument>
         <argument>Symfony\Bridge\Doctrine\Form\Type\EntityType</argument>
+        <argument>blackknight467\StarRatingBundle\Form\RatingType</argument>
       </argument>
       <argument type="collection">
         <argument>Symfony\Component\Form\Extension\Core\Type\TransformationFailureExtension</argument>
@@ -1240,7 +1263,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension" public="false">
-      <argument type="service" id=".service_locator.JjcjUSG"/>
+      <argument type="service" id=".service_locator.aHtUgpp"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -1360,6 +1383,53 @@
       <argument></argument>
       <argument type="service" id="assets.empty_version_strategy"/>
       <argument type="service" id="assets.context"/>
+    </service>
+    <service id="templating.engine.delegating" class="Symfony\Bundle\FrameworkBundle\Templating\DelegatingEngine" public="false">
+      <argument type="service" id="service_container"/>
+      <argument type="collection"/>
+      <deprecated>The "%service_id%" service is deprecated since Symfony 4.3 and will be removed in 5.0.</deprecated>
+    </service>
+    <service id="templating.name_parser" class="Symfony\Bundle\FrameworkBundle\Templating\TemplateNameParser" public="false">
+      <argument type="service" id="kernel"/>
+      <deprecated>The "%service_id%" service is deprecated since Symfony 4.3 and will be removed in 5.0.</deprecated>
+    </service>
+    <service id="templating.filename_parser" class="Symfony\Bundle\FrameworkBundle\Templating\TemplateFilenameParser" public="false"/>
+    <service id="templating.locator" class="Symfony\Bundle\FrameworkBundle\Templating\Loader\TemplateLocator" public="false">
+      <argument type="service" id="file_locator"/>
+      <argument>C:\Users\skand\Documents\yosra-match\var\cache\dev</argument>
+      <deprecated>The "%service_id%" service is deprecated since Symfony 4.3 and will be removed in 5.0.</deprecated>
+    </service>
+    <service id="templating.finder" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder" public="false">
+      <argument type="service" id="kernel"/>
+      <argument type="service" id="templating.filename_parser"/>
+      <argument>C:\Users\skand\Documents\yosra-match\src/Resources</argument>
+      <deprecated>The "%service_id%" service is deprecated since Symfony 4.3 and will be removed in 5.0.</deprecated>
+    </service>
+    <service id="templating.cache_warmer.template_paths" class="Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplatePathsCacheWarmer" public="false">
+      <tag name="kernel.cache_warmer" priority="20"/>
+      <argument type="service" id="templating.finder"/>
+      <argument type="service" id="templating.locator"/>
+      <deprecated>The "%service_id%" service is deprecated since Symfony 4.3 and will be removed in 5.0.</deprecated>
+    </service>
+    <service id="templating.loader.filesystem" class="Symfony\Bundle\FrameworkBundle\Templating\Loader\FilesystemLoader" public="false">
+      <argument type="service" id="templating.locator"/>
+      <deprecated>The "%service_id%" service is deprecated since Symfony 4.3 and will be removed in 5.0.</deprecated>
+    </service>
+    <service id="templating.loader.cache" class="Symfony\Component\Templating\Loader\CacheLoader" public="false">
+      <tag name="monolog.logger" channel="templating"/>
+      <argument type="service" id="templating.loader.wrapped"/>
+      <argument>null</argument>
+      <call method="setLogger">
+        <argument type="service" id="monolog.logger.templating" on-invalid="ignore"/>
+      </call>
+      <deprecated>The "%service_id%" service is deprecated since Symfony 4.3 and will be removed in 5.0.</deprecated>
+    </service>
+    <service id="templating.loader.chain" class="Symfony\Component\Templating\Loader\ChainLoader" public="false">
+      <tag name="monolog.logger" channel="templating"/>
+      <call method="setLogger">
+        <argument type="service" id="monolog.logger.templating" on-invalid="ignore"/>
+      </call>
+      <deprecated>The "%service_id%" service is deprecated since Symfony 4.3 and will be removed in 5.0.</deprecated>
     </service>
     <service id="mailer.mailer" class="Symfony\Component\Mailer\Mailer">
       <argument type="service" id="mailer.transports"/>
@@ -1846,6 +1916,8 @@
           <argument>C:\Users\skand\Documents\yosra-match\src/Resources/TwigExtraBundle/translations</argument>
           <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\web-server-bundle/translations</argument>
           <argument>C:\Users\skand\Documents\yosra-match\src/Resources/WebServerBundle/translations</argument>
+          <argument>C:\Users\skand\Documents\yosra-match\vendor\blackknight467\star-rating-bundle\blackknight467\StarRatingBundle/translations</argument>
+          <argument>C:\Users\skand\Documents\yosra-match\src/Resources/StarRatingBundle/translations</argument>
           <argument>C:\Users\skand\Documents\yosra-match\src/Resources/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
@@ -1878,6 +1950,8 @@
             <argument>C:\Users\skand\Documents\yosra-match\src/Resources/TwigExtraBundle/translations</argument>
             <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\web-server-bundle/translations</argument>
             <argument>C:\Users\skand\Documents\yosra-match\src/Resources/WebServerBundle/translations</argument>
+            <argument>C:\Users\skand\Documents\yosra-match\vendor\blackknight467\star-rating-bundle\blackknight467\StarRatingBundle/translations</argument>
+            <argument>C:\Users\skand\Documents\yosra-match\src/Resources/StarRatingBundle/translations</argument>
             <argument>C:\Users\skand\Documents\yosra-match\src/Resources/translations</argument>
           </argument>
         </argument>
@@ -2819,7 +2893,7 @@
     <service id="router.default" class="Symfony\Bundle\FrameworkBundle\Routing\Router" public="false">
       <tag name="monolog.logger" channel="router"/>
       <tag name="container.service_subscriber" id="routing.loader"/>
-      <argument type="service" id=".service_locator.n0p5GNi.router.default"/>
+      <argument type="service" id=".service_locator.mesbTvA.router.default"/>
       <argument>kernel::loadRoutes</argument>
       <argument type="collection">
         <argument key="cache_dir">C:\Users\skand\Documents\yosra-match\var\cache\dev</argument>
@@ -2871,7 +2945,7 @@
     </service>
     <service id="Symfony\Bundle\FrameworkBundle\Controller\TemplateController" class="Symfony\Bundle\FrameworkBundle\Controller\TemplateController" public="true">
       <argument type="service" id="twig" on-invalid="ignore"/>
-      <argument>null</argument>
+      <argument type="service" id="templating.engine.twig" on-invalid="ignore"/>
     </service>
     <service id="routing.loader.annotation" class="Symfony\Bundle\FrameworkBundle\Routing\AnnotatedRouteControllerLoader" public="false">
       <tag name="routing.loader" priority="-10"/>
@@ -3190,7 +3264,7 @@
       <factory class="Symfony\Bridge\Twig\ErrorRenderer\TwigErrorRenderer" method="isDebug"/>
     </service>
     <service id="twig" class="Twig\Environment" public="true">
-      <argument type="service" id="twig.loader.native_filesystem"/>
+      <argument type="service" id="twig.loader.filesystem"/>
       <argument type="collection">
         <argument key="debug">true</argument>
         <argument key="strict_variables">true</argument>
@@ -3252,6 +3326,9 @@
       <call method="addExtension">
         <argument type="service" id="doctrine.twig.doctrine_extension"/>
       </call>
+      <call method="addExtension">
+        <argument type="service" id="star_rating.twig"/>
+      </call>
       <call method="addGlobal">
         <argument>app</argument>
         <argument type="service" id="twig.app_variable"/>
@@ -3271,12 +3348,6 @@
           <argument>suggestFunction</argument>
         </argument>
       </call>
-      <call method="registerUndefinedTokenParserCallback">
-        <argument type="collection">
-          <argument type="service" id="twig.missing_extension_suggestor"/>
-          <argument>suggestTag</argument>
-        </argument>
-      </call>
       <configurator service="twig.configurator.environment" method="configure"/>
     </service>
     <service id="twig.app_variable" class="Symfony\Bridge\Twig\AppVariable" public="false">
@@ -3293,10 +3364,23 @@
         <argument type="service" id="request_stack" on-invalid="ignore"/>
       </call>
     </service>
+    <service id="twig.cache_warmer" class="Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheCacheWarmer" public="false">
+      <tag name="kernel.cache_warmer"/>
+      <tag name="container.service_subscriber" id="twig"/>
+      <argument type="service" id=".service_locator.o9nGMXB.twig.cache_warmer"/>
+      <argument type="service" id="templating.finder" on-invalid="ignore"/>
+      <argument type="collection">
+        <argument key="C:\Users\skand\Documents\yosra-match/vendor/blackknight467/star-rating-bundle/blackknight467/StarRatingBundle/Resources/views">StarRatingBundle</argument>
+        <argument key="C:\Users\skand\Documents\yosra-match\vendor\symfony\twig-bridge/Resources/views/Email">email</argument>
+        <argument key="C:\Users\skand\Documents\yosra-match\vendor\symfony\twig-bridge/Resources/views/Form">null</argument>
+      </argument>
+      <deprecated>The "%service_id%" service is deprecated since Symfony 4.4 and will be removed in 5.0.</deprecated>
+    </service>
     <service id="twig.template_iterator" class="Symfony\Bundle\TwigBundle\TemplateIterator" public="false">
       <argument type="service" id="kernel"/>
       <argument>C:\Users\skand\Documents\yosra-match\src</argument>
       <argument type="collection">
+        <argument key="C:\Users\skand\Documents\yosra-match/vendor/blackknight467/star-rating-bundle/blackknight467/StarRatingBundle/Resources/views">StarRatingBundle</argument>
         <argument key="C:\Users\skand\Documents\yosra-match\vendor\symfony\twig-bridge/Resources/views/Email">email</argument>
         <argument key="C:\Users\skand\Documents\yosra-match\vendor\symfony\twig-bridge/Resources/views/Form">null</argument>
       </argument>
@@ -3309,9 +3393,12 @@
       <argument type="service" id="twig.template_iterator"/>
     </service>
     <service id="twig.loader.native_filesystem" class="Symfony\Bundle\TwigBundle\Loader\NativeFilesystemLoader" public="false">
-      <tag name="twig.loader"/>
       <argument type="collection"/>
       <argument>C:\Users\skand\Documents\yosra-match</argument>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match/vendor/blackknight467/star-rating-bundle/blackknight467/StarRatingBundle/Resources/views</argument>
+        <argument>StarRatingBundle</argument>
+      </call>
       <call method="addPath">
         <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\framework-bundle/Resources/views</argument>
         <argument>Framework</argument>
@@ -3367,6 +3454,14 @@
       <call method="addPath">
         <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\security-bundle/Resources/views</argument>
         <argument>!Security</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\blackknight467\star-rating-bundle\blackknight467\StarRatingBundle/Resources/views</argument>
+        <argument>StarRating</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\blackknight467\star-rating-bundle\blackknight467\StarRatingBundle/Resources/views</argument>
+        <argument>!StarRating</argument>
       </call>
       <call method="addPath">
         <argument>C:\Users\skand\Documents\yosra-match/templates</argument>
@@ -3481,6 +3576,100 @@
       <tag name="twig.runtime"/>
       <argument type="service" id="twig.form.engine"/>
       <argument type="service" id="security.csrf.token_manager" on-invalid="null"/>
+    </service>
+    <service id="twig.loader.filesystem" class="Symfony\Bundle\TwigBundle\Loader\FilesystemLoader" public="false">
+      <tag name="twig.loader"/>
+      <argument type="service" id="templating.locator"/>
+      <argument type="service" id="templating.name_parser"/>
+      <argument>C:\Users\skand\Documents\yosra-match</argument>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match/vendor/blackknight467/star-rating-bundle/blackknight467/StarRatingBundle/Resources/views</argument>
+        <argument>StarRatingBundle</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\framework-bundle/Resources/views</argument>
+        <argument>Framework</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\framework-bundle/Resources/views</argument>
+        <argument>!Framework</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\twig-bundle/Resources/views</argument>
+        <argument>Twig</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\twig-bundle/Resources/views</argument>
+        <argument>!Twig</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\web-profiler-bundle/Resources/views</argument>
+        <argument>WebProfiler</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\web-profiler-bundle/Resources/views</argument>
+        <argument>!WebProfiler</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\debug-bundle/Resources/views</argument>
+        <argument>Debug</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\debug-bundle/Resources/views</argument>
+        <argument>!Debug</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\doctrine\doctrine-bundle/Resources/views</argument>
+        <argument>Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\doctrine\doctrine-bundle/Resources/views</argument>
+        <argument>!Doctrine</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\doctrine\doctrine-migrations-bundle/Resources/views</argument>
+        <argument>DoctrineMigrations</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\doctrine\doctrine-migrations-bundle/Resources/views</argument>
+        <argument>!DoctrineMigrations</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\security-bundle/Resources/views</argument>
+        <argument>Security</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\security-bundle/Resources/views</argument>
+        <argument>!Security</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\blackknight467\star-rating-bundle\blackknight467\StarRatingBundle/Resources/views</argument>
+        <argument>StarRating</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\blackknight467\star-rating-bundle\blackknight467\StarRatingBundle/Resources/views</argument>
+        <argument>!StarRating</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match/templates</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\twig-bridge/Resources/views/Email</argument>
+        <argument>email</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\twig-bridge/Resources/views/Email</argument>
+        <argument>!email</argument>
+      </call>
+      <call method="addPath">
+        <argument>C:\Users\skand\Documents\yosra-match\vendor\symfony\twig-bridge/Resources/views/Form</argument>
+      </call>
+    </service>
+    <service id="templating.engine.twig" class="Symfony\Bundle\TwigBundle\TwigEngine" public="false">
+      <argument type="service" id="twig"/>
+      <argument type="service" id="templating.name_parser"/>
+      <argument type="service" id="templating.locator"/>
+      <deprecated>The "%service_id%" service is deprecated since Symfony 4.4 and will be removed in 5.0.</deprecated>
     </service>
     <service id="twig.command.debug" class="Symfony\Bridge\Twig\Command\DebugCommand" public="false">
       <tag name="console.command" command="debug:twig"/>
@@ -4047,7 +4236,7 @@
       <factory class="Doctrine\ORM\EntityManager" method="create"/>
     </service>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory" public="false">
-      <argument type="service" id=".service_locator.I1UQfla"/>
+      <argument type="service" id=".service_locator._K3OonH"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -4834,6 +5023,16 @@
       <tag name="kernel.event_subscriber"/>
       <tag name="container.hot_path"/>
     </service>
+    <service id="templating.helper.logout_url" class="Symfony\Bundle\SecurityBundle\Templating\Helper\LogoutUrlHelper" public="false">
+      <tag name="templating.helper" alias="logout_url"/>
+      <argument type="service" id="security.logout_url_generator"/>
+      <deprecated>The "%service_id%" service is deprecated since Symfony 4.3 and will be removed in 5.0.</deprecated>
+    </service>
+    <service id="templating.helper.security" class="Symfony\Bundle\SecurityBundle\Templating\Helper\SecurityHelper" public="false">
+      <tag name="templating.helper" alias="security"/>
+      <argument type="service" id="security.authorization_checker" on-invalid="ignore"/>
+      <deprecated>The "%service_id%" service is deprecated since Symfony 4.3 and will be removed in 5.0.</deprecated>
+    </service>
     <service id="twig.extension.logout_url" class="Symfony\Bridge\Twig\Extension\LogoutUrlExtension" public="false">
       <tag name="twig.extension"/>
       <argument type="service" id="security.logout_url_generator"/>
@@ -5027,6 +5226,13 @@
         <argument>server:status</argument>
       </call>
     </service>
+    <service id="star_rating.type" class="blackknight467\StarRatingBundle\Form\RatingType">
+      <tag name="form.type" alias="rating"/>
+    </service>
+    <service id="star_rating.twig" class="blackknight467\StarRatingBundle\Extensions\StarRatingExtension">
+      <tag name="twig.extension"/>
+      <argument type="service" id="service_container"/>
+    </service>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AgenceController" class="App\Controller\AgenceController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AgenceController" class="App\Controller\AgenceController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\AgenceController" class="App\Controller\AgenceController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -5057,6 +5263,8 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\StadeController" class="App\Controller\StadeController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\StadeController" class="App\Controller\StadeController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\StadeController" class="App\Controller\StadeController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\AvisType" class="App\Form\AvisType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\AvisType" class="App\Form\AvisType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\BilletType" class="App\Form\BilletType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\BilletType" class="App\Form\BilletType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\EquipeType" class="App\Form\EquipeType" autowire="true" abstract="true"/>
@@ -5073,6 +5281,8 @@
     <service id=".abstract.instanceof.App\Repository\AgenceRepository" class="App\Repository\AgenceRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ArtisteRepository" class="App\Repository\ArtisteRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ArtisteRepository" class="App\Repository\ArtisteRepository" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\AvisRepository" class="App\Repository\AvisRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\AvisRepository" class="App\Repository\AvisRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\BilletRepository" class="App\Repository\BilletRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\BilletRepository" class="App\Repository\BilletRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\DescriptionRepository" class="App\Repository\DescriptionRepository" autowire="true" abstract="true"/>
@@ -5537,9 +5747,10 @@
       <argument type="service" id="debug.argument_resolver.not_tagged_controller.inner"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.JjcjUSG" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.aHtUgpp" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\AvisType" type="service_closure" id="App\Form\AvisType"/>
         <argument key="App\Form\BilletType" type="service_closure" id="App\Form\BilletType"/>
         <argument key="App\Form\EquipeType" type="service_closure" id="App\Form\EquipeType"/>
         <argument key="App\Form\EvenementType" type="service_closure" id="App\Form\EvenementType"/>
@@ -5550,6 +5761,7 @@
         <argument key="Symfony\Component\Form\Extension\Core\Type\ChoiceType" type="service_closure" id="form.type.choice"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FileType" type="service_closure" id="form.type.file"/>
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="service_closure" id="form.type.form"/>
+        <argument key="blackknight467\StarRatingBundle\Form\RatingType" type="service_closure" id="star_rating.type"/>
       </argument>
     </service>
     <service id=".debug.http_client" class="Symfony\Component\HttpClient\TraceableHttpClient">
@@ -5583,6 +5795,19 @@
     </service>
     <service id="monolog.logger.cache" class="Symfony\Bridge\Monolog\Logger">
       <argument>cache</argument>
+      <call method="pushProcessor">
+        <argument type="service" id="debug.log_processor"/>
+      </call>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.console"/>
+      </call>
+      <call method="pushHandler">
+        <argument type="service" id="monolog.handler.main"/>
+      </call>
+      <configurator class="Symfony\Bundle\FrameworkBundle\DependencyInjection\Compiler\AddDebugLogProcessorPass" method="configureLogger"/>
+    </service>
+    <service id="monolog.logger.templating" class="Symfony\Bridge\Monolog\Logger">
+      <argument>templating</argument>
       <call method="pushProcessor">
         <argument type="service" id="debug.log_processor"/>
       </call>
@@ -5720,11 +5945,12 @@
       <argument type="service" id="cache.doctrine.orm.default.result"/>
       <factory class="Doctrine\Common\Cache\Psr6\DoctrineProvider" method="wrap"/>
     </service>
-    <service id=".service_locator.I1UQfla" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator._K3OonH" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Repository\AgenceRepository" type="service_closure" id="App\Repository\AgenceRepository"/>
         <argument key="App\Repository\ArtisteRepository" type="service_closure" id="App\Repository\ArtisteRepository"/>
+        <argument key="App\Repository\AvisRepository" type="service_closure" id="App\Repository\AvisRepository"/>
         <argument key="App\Repository\BilletRepository" type="service_closure" id="App\Repository\BilletRepository"/>
         <argument key="App\Repository\DescriptionRepository" type="service_closure" id="App\Repository\DescriptionRepository"/>
         <argument key="App\Repository\EquipeRepository" type="service_closure" id="App\Repository\EquipeRepository"/>
@@ -5783,6 +6009,7 @@
         <argument key="security.token_storage" type="service_closure" id="security.token_storage" on-invalid="ignore"/>
         <argument key="serializer" type="service_closure" id="serializer" on-invalid="ignore"/>
         <argument key="session" type="service_closure" id="session" on-invalid="ignore"/>
+        <argument key="templating" type="service_closure" id="templating.engine.twig" on-invalid="ignore"/>
         <argument key="twig" type="service_closure" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
@@ -5858,17 +6085,17 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.XSes1R5" method="withContext"/>
     </service>
-    <service id=".service_locator.n0p5GNi" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.mesbTvA" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="routing.loader" type="service_closure" id="routing.loader"/>
       </argument>
     </service>
-    <service id=".service_locator.n0p5GNi.router.default" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.mesbTvA.router.default" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="router.default"/>
       <argument>router.default</argument>
       <argument type="service" id="service_container"/>
-      <factory service=".service_locator.n0p5GNi" method="withContext"/>
+      <factory service=".service_locator.mesbTvA" method="withContext"/>
     </service>
     <service id=".service_locator.m90YCjy" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
@@ -5899,6 +6126,12 @@
       <argument type="collection">
         <argument key="twig" type="service_closure" id="twig"/>
       </argument>
+    </service>
+    <service id=".service_locator.o9nGMXB.twig.cache_warmer" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="twig.cache_warmer"/>
+      <argument>twig.cache_warmer</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.o9nGMXB" method="withContext"/>
     </service>
     <service id=".service_locator.o9nGMXB.twig.template_cache_warmer" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="twig.template_cache_warmer"/>
@@ -6313,6 +6546,8 @@
     <service id="form.property_accessor" alias="property_accessor" public="false"/>
     <service id="form.choice_list_factory" alias="form.choice_list_factory.cached" public="false"/>
     <service id="Symfony\Component\Asset\Packages" alias="assets.packages" public="false"/>
+    <service id="templating.loader" alias="templating.loader.filesystem" public="true"/>
+    <service id="templating" alias="templating.engine.twig" public="true"/>
     <service id="Symfony\Contracts\HttpClient\HttpClientInterface" alias=".debug.http_client"/>
     <service id="mailer" alias="mailer.mailer"/>
     <service id="Symfony\Component\Mailer\MailerInterface" alias="mailer.mailer"/>
@@ -6396,12 +6631,14 @@
     <service id="security.user_checker.main" alias="security.user_checker" public="false"/>
     <service id="Symfony\Component\Security\Core\User\UserCheckerInterface" alias="security.user_checker" public="false"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.CmORmuK" public="true"/>
-    <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="argument_resolver.controller_locator" alias=".service_locator._sfs3VO"/>
-    <service id="twig.loader" alias="twig.loader.native_filesystem"/>
+    <service id="Symfony\Component\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
+    <service id="Symfony\Bundle\FrameworkBundle\Templating\EngineInterface" alias="templating.engine.twig" public="false"/>
+    <service id="twig.loader" alias="twig.loader.filesystem"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
     <service id="Psr\Log\LoggerInterface $consoleLogger" alias="monolog.logger.console"/>
     <service id="Psr\Log\LoggerInterface $cacheLogger" alias="monolog.logger.cache"/>
+    <service id="Psr\Log\LoggerInterface $templatingLogger" alias="monolog.logger.templating"/>
     <service id="Psr\Log\LoggerInterface $httpClientLogger" alias="monolog.logger.http_client"/>
     <service id="Psr\Log\LoggerInterface $translationLogger" alias="monolog.logger.translation"/>
     <service id="Psr\Log\LoggerInterface $profilerLogger" alias="monolog.logger.profiler"/>

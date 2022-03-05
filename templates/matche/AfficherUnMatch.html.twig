@@ -9,6 +9,51 @@
         <div class="alert alert-success">
             {{ message }}
         </div>
+
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Donnez votre Avis
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Votre Avis</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{ form_start(form) }}
+                        <div class="cp-field">
+                            <h5>Note</h5>
+                            <div class="form-group">
+                                {{ form_widget(form.note) }}
+                            </div>
+                        </div>
+                        <div class="cp-field">
+                            <h5>Votre Avis</h5>
+                            <div class="form-group">
+                                {{ form_widget(form.description) }}
+                            </div>
+                        </div>
+                        <div class="save-stngs pd3">
+                            <ul>
+                                <!--<li><button type="submit">Envoyer</button></li>-->
+                                <li> {{ form_widget(form.Envoyer) }}</li>
+                            </ul>
+                        </div>
+                        {{ form_end(form) }}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     {% endfor %}
 
     <section class=innerpage_all_wrap>

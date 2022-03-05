@@ -234,7 +234,7 @@ function Update(MatcheRepository  $repository,$id,Request $request){
 
         foreach ($matches as $m){
 
-            $realEntities[$m->getId()] = [$m->getNomMatche(),$m->getDate(),$m->getTime(),$m->getNomArbitre(),$m->getStade()->getNom()];
+            $realEntities[$m->getId()] = [$m->getNomMatche(),$m->getDate()->format('d'),$m->getDate()->format('m'),$m->getDate()->format('y'),$m->getTime()->format('h'),$m->getNomArbitre(),$m->getStade()->getNom(),$m->getImage1(),$m->getImage2(),];
         }
 
         return $realEntities;

@@ -178,19 +178,27 @@ class __TwigTemplate_e2d60f07d5ac8adc227ab0647d2f488c04bd23854d565755ad319ebe768
                             \$.each(arr, function(id, value) {
                                 if (key === 'entities') {
                                     if (id !== 'error') {
+                                        var img1=";
+        // line 86
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("upload/"), "html", null, true);
+        echo "+value[7];
+                                        var img2=";
+        // line 87
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("upload/"), "html", null, true);
+        echo "+value[8];
                                         entitySelector.append(
                                         '<div class=\"matchSchedule_details row\"> <div class=\"match_next right-triangle\"> <div class=\"wrap_match_next right-triangle\"><div class=right-padding><h4 class=headline03>'+value[0]+ '</h4>'+
                                             '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></div>'+
                                         '</div></div>'+
                                         '<div class=match_versus><div class=\"bg-blackimg match_versus02\"><div class=nextmatchDetails><div class=\"wrap-logo clearfix\">'+
-                                            '<div class=logo-match><img src=front-office/images/matchResult/tunn.png alt=image></div>'+
+                                            '<div class=logo-match><img src=\"'+img1+'\" alt=image></div>'+
                                             '<div class=match_vs>vs</div>'+
-                                            '<div class=logo-match><img src=front-office/images/matchResult/algé.png alt=image></div>'+
+                                            '<div class=logo-match><img src=\"'+img2+'\" alt=image></div>'+
                                             '</div>'+
-                                            '<p class=match_dtls><b> Date :</b>'+value[1]+'</p>'+
-                                        '<p class=match_dtls><b> Time :</b>'+value[2]+ 'PM</p>'+
-                                        '<p class=match_dtls><b> Nom Arbitre Principal :</b>'+value[3]+'</p>'+
-                                        '<p class=match_dtls><b> Stade :</b>'+value[4]+'<br> <li><a href=\"ListByMatche/'+value[0]+'\" class=\"btn-small01 btn-green\">Billet</a></li></p></div>'+
+                                            '<p class=match_dtls><b> Date :</b>'+value[1]+'/'+value[2]+'/'+value[3]+'</p>'+
+                                        '<p class=match_dtls><b> Time :</b>'+value[4]+ 'PM</p>'+
+                                        '<p class=match_dtls><b> Nom Arbitre Principal :</b>'+value[5]+'</p>'+
+                                        '<p class=match_dtls><b> Stade :</b>'+value[6]+'<br> <li><a href=\"ListByMatche/'+id+'\" class=\"btn-small01 btn-green\">Billet</a></li></p></div>'+
                                         '</div></div></div>'
                                         );
                                     } else {
@@ -215,7 +223,7 @@ class __TwigTemplate_e2d60f07d5ac8adc227ab0647d2f488c04bd23854d565755ad319ebe768
                 searchRequest = \$.ajax({
                     type: \"POST\",
                     url: \"";
-        // line 122
+        // line 124
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("AffMatchAjax");
         echo "\",
                     data: {
@@ -229,19 +237,27 @@ class __TwigTemplate_e2d60f07d5ac8adc227ab0647d2f488c04bd23854d565755ad319ebe768
                             \$.each(arr, function(id, value) {
                                 if (key === 'entities') {
                                     if (id !== 'error') {
+                                        var img1=";
+        // line 136
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("upload/"), "html", null, true);
+        echo "+value[7];
+                                        var img2=";
+        // line 137
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("upload/"), "html", null, true);
+        echo "+value[8];
                                         entitySelector.append(
                                             '<div class=\"matchSchedule_details row\"> <div class=\"match_next right-triangle\"> <div class=\"wrap_match_next right-triangle\"><div class=right-padding><h4 class=headline03>'+value[0]+ '</h4>'+
                                             '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></div>'+
                                             '</div></div>'+
                                             '<div class=match_versus><div class=\"bg-blackimg match_versus02\"><div class=nextmatchDetails><div class=\"wrap-logo clearfix\">'+
-                                            '<div class=logo-match><img src=front-office/images/matchResult/tunn.png alt=image></div>'+
+                                            '<div class=logo-match><img src=\"'+img1+'\" alt=image></div>'+
                                             '<div class=match_vs>vs</div>'+
-                                            '<div class=logo-match><img src=front-office/images/matchResult/algé.png alt=image></div>'+
+                                            '<div class=logo-match><img src=\"'+img2+'\" alt=image></div>'+
                                             '</div>'+
-                                            '<p class=match_dtls><b> Date :</b>'+value[1]+'</p>'+
-                                            '<p class=match_dtls><b> Time :</b>'+value[2]+ 'PM</p>'+
-                                            '<p class=match_dtls><b> Nom Arbitre Principal :</b>'+value[3]+'</p>'+
-                                            '<p class=match_dtls><b> Stade :</b>'+value[4]+'<br> <li><a href=\"ListByMatche/'+value[0]+'\" class=\"btn-small01 btn-green\">Billet</a></li></p></div>'+
+                                            '<p class=match_dtls><b> Date :</b>'+value[1]+'/'+value[2]+'/'+value[3]+'</p>'+
+                                            '<p class=match_dtls><b> Time :</b>'+value[4]+ 'PM</p>'+
+                                            '<p class=match_dtls><b> Nom Arbitre Principal :</b>'+value[5]+'</p>'+
+                                            '<p class=match_dtls><b> Stade :</b>'+value[6]+'<br> <li><a href=\"ListByMatche/'+id+'\" class=\"btn-small01 btn-green\">Billet</a></li></p></div>'+
                                             '</div></div></div>'
                                         );
                                     } else {
@@ -277,7 +293,7 @@ class __TwigTemplate_e2d60f07d5ac8adc227ab0647d2f488c04bd23854d565755ad319ebe768
 
     public function getDebugInfo()
     {
-        return array (  219 => 122,  168 => 74,  122 => 30,  111 => 28,  107 => 27,  91 => 13,  82 => 10,  79 => 9,  75 => 8,  68 => 3,  58 => 2,  35 => 1,);
+        return array (  246 => 137,  242 => 136,  227 => 124,  187 => 87,  183 => 86,  168 => 74,  122 => 30,  111 => 28,  107 => 27,  91 => 13,  82 => 10,  79 => 9,  75 => 8,  68 => 3,  58 => 2,  35 => 1,);
     }
 
     public function getSourceContext()
@@ -367,19 +383,21 @@ class __TwigTemplate_e2d60f07d5ac8adc227ab0647d2f488c04bd23854d565755ad319ebe768
                             \$.each(arr, function(id, value) {
                                 if (key === 'entities') {
                                     if (id !== 'error') {
+                                        var img1={{ asset('upload/') }}+value[7];
+                                        var img2={{ asset('upload/')  }}+value[8];
                                         entitySelector.append(
                                         '<div class=\"matchSchedule_details row\"> <div class=\"match_next right-triangle\"> <div class=\"wrap_match_next right-triangle\"><div class=right-padding><h4 class=headline03>'+value[0]+ '</h4>'+
                                             '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></div>'+
                                         '</div></div>'+
                                         '<div class=match_versus><div class=\"bg-blackimg match_versus02\"><div class=nextmatchDetails><div class=\"wrap-logo clearfix\">'+
-                                            '<div class=logo-match><img src=front-office/images/matchResult/tunn.png alt=image></div>'+
+                                            '<div class=logo-match><img src=\"'+img1+'\" alt=image></div>'+
                                             '<div class=match_vs>vs</div>'+
-                                            '<div class=logo-match><img src=front-office/images/matchResult/algé.png alt=image></div>'+
+                                            '<div class=logo-match><img src=\"'+img2+'\" alt=image></div>'+
                                             '</div>'+
-                                            '<p class=match_dtls><b> Date :</b>'+value[1]+'</p>'+
-                                        '<p class=match_dtls><b> Time :</b>'+value[2]+ 'PM</p>'+
-                                        '<p class=match_dtls><b> Nom Arbitre Principal :</b>'+value[3]+'</p>'+
-                                        '<p class=match_dtls><b> Stade :</b>'+value[4]+'<br> <li><a href=\"ListByMatche/'+value[0]+'\" class=\"btn-small01 btn-green\">Billet</a></li></p></div>'+
+                                            '<p class=match_dtls><b> Date :</b>'+value[1]+'/'+value[2]+'/'+value[3]+'</p>'+
+                                        '<p class=match_dtls><b> Time :</b>'+value[4]+ 'PM</p>'+
+                                        '<p class=match_dtls><b> Nom Arbitre Principal :</b>'+value[5]+'</p>'+
+                                        '<p class=match_dtls><b> Stade :</b>'+value[6]+'<br> <li><a href=\"ListByMatche/'+id+'\" class=\"btn-small01 btn-green\">Billet</a></li></p></div>'+
                                         '</div></div></div>'
                                         );
                                     } else {
@@ -415,19 +433,21 @@ class __TwigTemplate_e2d60f07d5ac8adc227ab0647d2f488c04bd23854d565755ad319ebe768
                             \$.each(arr, function(id, value) {
                                 if (key === 'entities') {
                                     if (id !== 'error') {
+                                        var img1={{ asset('upload/') }}+value[7];
+                                        var img2={{ asset('upload/')  }}+value[8];
                                         entitySelector.append(
                                             '<div class=\"matchSchedule_details row\"> <div class=\"match_next right-triangle\"> <div class=\"wrap_match_next right-triangle\"><div class=right-padding><h4 class=headline03>'+value[0]+ '</h4>'+
                                             '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></div>'+
                                             '</div></div>'+
                                             '<div class=match_versus><div class=\"bg-blackimg match_versus02\"><div class=nextmatchDetails><div class=\"wrap-logo clearfix\">'+
-                                            '<div class=logo-match><img src=front-office/images/matchResult/tunn.png alt=image></div>'+
+                                            '<div class=logo-match><img src=\"'+img1+'\" alt=image></div>'+
                                             '<div class=match_vs>vs</div>'+
-                                            '<div class=logo-match><img src=front-office/images/matchResult/algé.png alt=image></div>'+
+                                            '<div class=logo-match><img src=\"'+img2+'\" alt=image></div>'+
                                             '</div>'+
-                                            '<p class=match_dtls><b> Date :</b>'+value[1]+'</p>'+
-                                            '<p class=match_dtls><b> Time :</b>'+value[2]+ 'PM</p>'+
-                                            '<p class=match_dtls><b> Nom Arbitre Principal :</b>'+value[3]+'</p>'+
-                                            '<p class=match_dtls><b> Stade :</b>'+value[4]+'<br> <li><a href=\"ListByMatche/'+value[0]+'\" class=\"btn-small01 btn-green\">Billet</a></li></p></div>'+
+                                            '<p class=match_dtls><b> Date :</b>'+value[1]+'/'+value[2]+'/'+value[3]+'</p>'+
+                                            '<p class=match_dtls><b> Time :</b>'+value[4]+ 'PM</p>'+
+                                            '<p class=match_dtls><b> Nom Arbitre Principal :</b>'+value[5]+'</p>'+
+                                            '<p class=match_dtls><b> Stade :</b>'+value[6]+'<br> <li><a href=\"ListByMatche/'+id+'\" class=\"btn-small01 btn-green\">Billet</a></li></p></div>'+
                                             '</div></div></div>'
                                         );
                                     } else {

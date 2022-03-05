@@ -83,19 +83,21 @@
                             $.each(arr, function(id, value) {
                                 if (key === 'entities') {
                                     if (id !== 'error') {
+                                        var img1={{ asset('upload/') }}+value[7];
+                                        var img2={{ asset('upload/')  }}+value[8];
                                         entitySelector.append(
                                         '<div class="matchSchedule_details row"> <div class="match_next right-triangle"> <div class="wrap_match_next right-triangle"><div class=right-padding><h4 class=headline03>'+value[0]+ '</h4>'+
                                             '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></div>'+
                                         '</div></div>'+
                                         '<div class=match_versus><div class="bg-blackimg match_versus02"><div class=nextmatchDetails><div class="wrap-logo clearfix">'+
-                                            '<div class=logo-match><img src=front-office/images/matchResult/tunn.png alt=image></div>'+
+                                            '<div class=logo-match><img src="'+img1+'" alt=image></div>'+
                                             '<div class=match_vs>vs</div>'+
-                                            '<div class=logo-match><img src=front-office/images/matchResult/algé.png alt=image></div>'+
+                                            '<div class=logo-match><img src="'+img2+'" alt=image></div>'+
                                             '</div>'+
-                                            '<p class=match_dtls><b> Date :</b>'+value[1]+'</p>'+
-                                        '<p class=match_dtls><b> Time :</b>'+value[2]+ 'PM</p>'+
-                                        '<p class=match_dtls><b> Nom Arbitre Principal :</b>'+value[3]+'</p>'+
-                                        '<p class=match_dtls><b> Stade :</b>'+value[4]+'<br> <li><a href="ListByMatche/'+value[0]+'" class="btn-small01 btn-green">Billet</a></li></p></div>'+
+                                            '<p class=match_dtls><b> Date :</b>'+value[1]+'/'+value[2]+'/'+value[3]+'</p>'+
+                                        '<p class=match_dtls><b> Time :</b>'+value[4]+ 'PM</p>'+
+                                        '<p class=match_dtls><b> Nom Arbitre Principal :</b>'+value[5]+'</p>'+
+                                        '<p class=match_dtls><b> Stade :</b>'+value[6]+'<br> <li><a href="ListByMatche/'+id+'" class="btn-small01 btn-green">Billet</a></li></p></div>'+
                                         '</div></div></div>'
                                         );
                                     } else {
@@ -131,19 +133,21 @@
                             $.each(arr, function(id, value) {
                                 if (key === 'entities') {
                                     if (id !== 'error') {
+                                        var img1={{ asset('upload/') }}+value[7];
+                                        var img2={{ asset('upload/')  }}+value[8];
                                         entitySelector.append(
                                             '<div class="matchSchedule_details row"> <div class="match_next right-triangle"> <div class="wrap_match_next right-triangle"><div class=right-padding><h4 class=headline03>'+value[0]+ '</h4>'+
                                             '<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p></div>'+
                                             '</div></div>'+
                                             '<div class=match_versus><div class="bg-blackimg match_versus02"><div class=nextmatchDetails><div class="wrap-logo clearfix">'+
-                                            '<div class=logo-match><img src=front-office/images/matchResult/tunn.png alt=image></div>'+
+                                            '<div class=logo-match><img src="'+img1+'" alt=image></div>'+
                                             '<div class=match_vs>vs</div>'+
-                                            '<div class=logo-match><img src=front-office/images/matchResult/algé.png alt=image></div>'+
+                                            '<div class=logo-match><img src="'+img2+'" alt=image></div>'+
                                             '</div>'+
-                                            '<p class=match_dtls><b> Date :</b>'+value[1]+'</p>'+
-                                            '<p class=match_dtls><b> Time :</b>'+value[2]+ 'PM</p>'+
-                                            '<p class=match_dtls><b> Nom Arbitre Principal :</b>'+value[3]+'</p>'+
-                                            '<p class=match_dtls><b> Stade :</b>'+value[4]+'<br> <li><a href="ListByMatche/'+value[0]+'" class="btn-small01 btn-green">Billet</a></li></p></div>'+
+                                            '<p class=match_dtls><b> Date :</b>'+value[1]+'/'+value[2]+'/'+value[3]+'</p>'+
+                                            '<p class=match_dtls><b> Time :</b>'+value[4]+ 'PM</p>'+
+                                            '<p class=match_dtls><b> Nom Arbitre Principal :</b>'+value[5]+'</p>'+
+                                            '<p class=match_dtls><b> Stade :</b>'+value[6]+'<br> <li><a href="ListByMatche/'+id+'" class="btn-small01 btn-green">Billet</a></li></p></div>'+
                                             '</div></div></div>'
                                         );
                                     } else {

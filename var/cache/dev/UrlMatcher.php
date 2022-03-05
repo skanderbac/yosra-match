@@ -37,6 +37,8 @@ return [
         '/AfficheUnM' => [[['_route' => 'AfficheUnMatche', '_controller' => 'App\\Controller\\MatcheController::Afficheunmatche'], null, null, null, false, false, null]],
         '/ListeM' => [[['_route' => 'ListeM', '_controller' => 'App\\Controller\\MatcheController::ListeM'], null, ['GET' => 0], null, false, false, null]],
         '/matche/ajouter' => [[['_route' => 'app_matche_ajouter_matche', '_controller' => 'App\\Controller\\MatcheController::Ajouter_matche'], null, null, null, false, false, null]],
+        '/AffMatcheAjax' => [[['_route' => 'AffMatchAjax', '_controller' => 'App\\Controller\\MatcheController::AffAjaxMatch'], null, ['POST' => 0], null, false, false, null]],
+        '/RechercheMatche' => [[['_route' => 'rechMatch', '_controller' => 'App\\Controller\\MatcheController::RechercheAjaxMatch'], null, ['POST' => 0], null, false, false, null]],
         '/stade' => [[['_route' => 'stade', '_controller' => 'App\\Controller\\StadeController::index'], null, null, null, false, false, null]],
         '/AfficheStade' => [[['_route' => 'AfficheStade', '_controller' => 'App\\Controller\\StadeController::Affiche'], null, null, null, false, false, null]],
         '/stade/AddStade' => [[['_route' => 'AddStade', '_controller' => 'App\\Controller\\StadeController::Add'], null, null, null, false, false, null]],

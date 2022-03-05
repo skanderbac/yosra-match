@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Matche;
+use App\Entity\Reclamation;
 use App\Form\MatcheType;
 use App\Repository\BilletRepository;
 use App\Repository\MatcheRepository;
@@ -187,6 +188,56 @@ function Update(MatcheRepository  $repository,$id,Request $request){
             'a'=>$matche, 'billet'=>$billet
         ]);
 
+    }
+
+
+    /**
+     * @Route("/AffMatcheAjax", name="AffMatchAjax", methods={"POST"})
+     */
+    public function AffAjaxMatch(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+
+        $entities =  $em->getRepository(Matche::class)->findAll();
+
+        if(!$entities) {
+            $result['entities']['error'] = "Aucun matche trouvée";
+        } else {
+            $result['entities'] = $this->getRealEntities($entities);
+        }
+
+        return new Response(json_encode($result));
+    }
+
+    /**
+     * @Route("/RechercheMatche", name="rechMatch", methods={"POST"})
+     */
+    public function RechercheAjaxMatch(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $requestString = $request->get('q');
+
+        $entities =  $em->getRepository(Matche::class)->Recherche($requestString);
+
+        if(!$entities) {
+            $result['entities']['error'] = "Aucun matche trouvée";
+        } else {
+            $result['entities'] = $this->getRealEntities($entities);
+        }
+
+        return new Response(json_encode($result));
+    }
+
+    public function getRealEntities($matches){
+
+        foreach ($matches as $m){
+
+            $realEntities[$m->getId()] = [$m->getNomMatche(),$m->getDate(),$m->getTime(),$m->getNomArbitre(),$m->getStade()->getNom()];
+        }
+
+        return $realEntities;
     }
 }
 

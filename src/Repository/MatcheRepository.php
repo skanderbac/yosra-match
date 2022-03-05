@@ -47,4 +47,19 @@ class MatcheRepository extends ServiceEntityRepository
         ;
     }
     */
+
+     /**
+    * @return Matche[] Returns an array of Matche objects
+    */
+
+    public function Recherche($value)
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.NomMatche = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 }

@@ -10,7 +10,7 @@ if (in_array(PHP_SAPI, ['cli', 'phpdbg'], true)) {
 }
 
 require dirname(__DIR__, 3).''.\DIRECTORY_SEPARATOR.'vendor/autoload.php';
-require __DIR__.'/Container9QeITcn/srcApp_KernelDevDebugContainer.php';
+require __DIR__.'/ContainerXpMmYLC/srcApp_KernelDevDebugContainer.php';
 
 $classes = [];
 $classes[] = 'Symfony\Bundle\FrameworkBundle\FrameworkBundle';
@@ -277,6 +277,7 @@ $classes[] = 'Symfony\Component\Mailer\Transport\SendmailTransportFactory';
 $classes[] = 'Symfony\Component\Mailer\Transport\Smtp\EsmtpTransportFactory';
 $classes[] = 'Symfony\Bundle\MakerBundle\Command\MakerCommand';
 $classes[] = 'Symfony\Bundle\MakerBundle\Maker\MakeAuthenticator';
+$classes[] = 'Symfony\Bundle\MakerBundle\Security\SecurityControllerBuilder';
 $classes[] = 'Symfony\Bundle\MakerBundle\Maker\MakeCommand';
 $classes[] = 'Symfony\Bundle\MakerBundle\Maker\MakeController';
 $classes[] = 'Symfony\Bundle\MakerBundle\Maker\MakeCrud';
